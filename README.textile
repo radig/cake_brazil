@@ -1,0 +1,9 @@
+h1. Plugin Cake Brazil
+
+Repositório de funcionalidades e informações úteis a sistemas brasileiros.
+Este plugin não incluí tradução do CakePHP ou localização de dados, para estas tarefas
+utilize o plugin "CakePtBr":https://github.com/jrbasso/cake_ptbr ou "Locale":https://github.com/radig/locale
+
+h2. Licença
+
+MIT
