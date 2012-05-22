@@ -1,7 +1,6 @@
 <?php
 App::uses('ArraySource', 'Datasources.Model/Datasource');
 ConnectionManager::create('UfArraySource', array('datasource' => 'Datasources.ArraySource'));
-
 App::uses('CakeBrazilAppModel', 'CakeBrazil.Model');
 
 /**
@@ -12,12 +11,12 @@ App::uses('CakeBrazilAppModel', 'CakeBrazil.Model');
 class Uf extends CakeBrazilAppModel
 {
 	public $useDbConfig = 'UfArraySource';
-	
+
 	public $displayField = 'acronym';
-	
+
 	/**
 	 * hasMany associations
-	 * 
+	 *
 	 * @var array
 	 */
 	public $hasMany = array(
@@ -25,10 +24,10 @@ class Uf extends CakeBrazilAppModel
 			'className' => 'CakeBrazil.City'
 		)
 	);
-	
+
 	/**
 	 * Uniões federativas do Brasil
-	 * 
+	 *
 	 * @var array
 	 */
 	public $records = array(
