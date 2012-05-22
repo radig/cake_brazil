@@ -19,7 +19,7 @@ class CitiesController extends AppController
 		$this->set('_serialize', 'cities');
 	}
 
-	public function listAll()
+	public function listAll($withGroup = false)
 	{
 		$this->viewClass = 'Json';
 
@@ -34,12 +34,27 @@ class CitiesController extends AppController
 			)
 		);
 
-		$onlyCities = array();
+		if(!$withGroup)
+		{
+			$onlyCities = array();
 
-		foreach($cities as $uf)
-			$onlyCities += $uf;
+			foreach ($cities as $uf)
+				$onlyCities += $uf;
 
-		$this->set('cities', $onlyCities);
+			$cities = $onlyCities;
+		}
+		else
+		{
+			foreach ($cities as $ufId => $ufCities)
+			{
+				$this->City->Uf->recursive = -1;
+				$uf = $this->City->Uf->find('first', array('conditions' => array('Uf.id' => $ufId), 'recursive' => -1));
+				$cities[$uf['Uf']['name']] = $ufCities;
+				unset($cities[$ufId]);
+			}
+		}
+
+		$this->set('cities', $cities);
 		$this->set('_serialize', 'cities');
 	}
 }

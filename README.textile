@@ -4,6 +4,71 @@ Repositório de funcionalidades e informações úteis a sistemas brasileiros.
 Este plugin não incluí tradução do CakePHP ou localização de dados, para estas tarefas
 utilize o plugin "CakePtBr":https://github.com/jrbasso/cake_ptbr ou "Locale":https://github.com/radig/locale
 
+h2. Requisitos
+
+* PHP > 5.2.x
+* CakePHP 2.x
+* "Plugin DataSources":https://github.com/cakephp/datasources/
+
+h2. Como usar
+
+# Clone, faça o download ou coloque como submódulo este repositório
+
+bc. git submodule add git://github.com/radig/cake_brazil.git Plugin/CakeBrazil
+
+# Inicialize a tabela de cidades (_cities_):
+
+bc. cake schema create -p CakeBrazil
+
+# Carregue os modelos Uf (para os Estados brasileiros) ou City (para as cidades) onde for conveniente:
+
+bc. $this->loadModel('CakeBrazil.Uf');
+
+# Acesse os dados
+
+bc. $ufs = $this->Uf->find('list');
+
+h3. Usando com Ajax
+
+Faça requisições no endereço */cake_brazil/cities/listByUf/[ID]* para ter acesso a lista
+de cidades do estado com id = [ID].
+
+Faça requisições no endereço */cake_brazil/cities/listAll/true* para ter acesso a lista
+de todas as cidades, em ordem alfabética, agrupada por estados.
+
+Faça requisições no endereço */cake_brazil/cities/listAll* para ter acesso a lista
+de todas as cidades, em ordem alfabética, agrupada implicitamente por estados.
+
 h2. Licença
 
-MIT
+Licenciado sob a licença MIT, que em resumo destaca:
+
+* O uso do plugin é livre e gratuíto, em qualquer situação
+* É livre modificação e redistribuição do código
+* Use o código por sua conta e risco
+* Os autores e colaboradores não fornecem nenhum tipo de garantia explícita
+ou implícita
+
+
+The MIT License
+
+Copyright 2011 - 2012, Radig Soluções em TI
+						http://radig.com.br
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the "Software"),
+to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
