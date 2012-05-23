@@ -5,7 +5,7 @@ class CitiesController extends AppController
 	{
 		$this->viewClass = 'Json';
 
-		if(!$this->request->is('get') || $this->request->is('ajax'))
+		if(!$this->request->is('get') || !$this->request->is('ajax'))
 			throw new MethodNotAllowedException('Essa ação só aceita requisições GET');
 
 		$cities = $this->City->find('list', array(
@@ -23,7 +23,7 @@ class CitiesController extends AppController
 	{
 		$this->viewClass = 'Json';
 
-		if(!$this->request->is('get') || $this->request->is('ajax'))
+		if(!$this->request->is('get') || !$this->request->is('ajax'))
 			throw new MethodNotAllowedException('Essa ação só aceita requisições GET');
 
 		$cities = $this->City->find('list', array(
