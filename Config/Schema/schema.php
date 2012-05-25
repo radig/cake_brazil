@@ -13,13 +13,14 @@ class cakeBrazilSchema extends CakeSchema
 		if(isset($event['drop']) && $event['drop'] === 'cities')
 			return;
 
+		if(isset($event['errors']) && !empty($event['errors']))
+			throw new Exception($event['errors']);
+
 		$db = ConnectionManager::getDataSource($this->connection);
 		$fileName = CakePlugin::path($this->plugin) . 'Config' . DS . 'Schema' . DS . 'cities.sql';
 		$statements = file_get_contents($fileName);
 
-		/* Replacing the block comments */
 		$statements = preg_replace('/\/\*[^\*]*\*\//','',$statements);
-		/* Replacing the line comments */
 		$statements = preg_replace('/.*\-\-.*\n/','',$statements);
 
 		$statements = explode(';', $statements);
@@ -27,7 +28,7 @@ class cakeBrazilSchema extends CakeSchema
 		foreach ($statements as $statement)
 		{
 			$statement = trim($statement);
-			if ($statement != '')
+			if (!empty($statement))
 			{
 				$db->execute($statement);
 			}
@@ -35,9 +36,9 @@ class cakeBrazilSchema extends CakeSchema
 	}
 
 	public $cities = array(
-		'id' => array('type' => 'primary_key', 'key' => 'primary'),
+		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'key' => 'primary'),
+		'name' => array('type' => 'string', 'null' => false, 'default' => null),
 		'uf_id' => array('type' => 'integer', 'null' => false, 'default' => null),
-		'name' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 255),
 		'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => true), 'uf_id' => array('column' => 'uf_id', 'unique' => false))
