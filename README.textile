@@ -12,7 +12,21 @@ h2. Requisitos
 
 h2. Como usar
 
-# Clone, faça o download ou coloque como submódulo este repositório
+# Primeiro faça o download dos arquivos. Sugerimos uma das opções abaixo:
+
+h3. Usando Composer
+
+Edite o arquivo de dependências da sua aplicação, incluindo a linha
+
+<pre>
+"require": {
+    "radig/cake_brazil" : "1.0.*"
+}
+</pre>
+
+h3. Usando submódulos do Git
+
+Clone, faça o download ou coloque como submódulo este repositório
 
 bc. git submodule add git://github.com/radig/cake_brazil.git Plugin/CakeBrazil
 
